@@ -25,7 +25,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import io.newgrounds.NG;
 import lime.app.Application;
-import openfl.Assets
+import openfl.Assets;
 import openfl.utils.Assets as OpenFlAssets;
 import sys.FileSystem;
 
