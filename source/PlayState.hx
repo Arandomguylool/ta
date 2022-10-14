@@ -3110,12 +3110,6 @@ class PlayState extends MusicBeatState
 					releaseArray = [false, false, false, false];
 				} 
 
-				var anas:Array<Ana> = [null,null,null,null];
-
-				for (i in 0...pressArray.length)
-					if (pressArray[i])
-						anas[i] = new Ana(Conductor.songPosition, null, false, "miss", i);
-
 				// HOLDS, check for sustain notes
 				if (holdArray.contains(true) && /*!boyfriend.stunned && */ generatedMusic)
 				{
@@ -3125,9 +3119,6 @@ class PlayState extends MusicBeatState
 							goodNoteHit(daNote);
 					});
 				}
-		 
-				if (KeyBinds.gamepad && !FlxG.keys.justPressed.ANY)
-				{
 					// PRESSES, check for note hits
 					if (pressArray.contains(true) && generatedMusic)
 					{
@@ -3198,9 +3189,6 @@ class PlayState extends MusicBeatState
 										mashViolations--;
 									scoreTxt.color = FlxColor.WHITE;
 									var noteDiff:Float = -(coolNote.strumTime - Conductor.songPosition);
-									anas[coolNote.noteData].hit = true;
-									anas[coolNote.noteData].hitJudge = Ratings.CalculateRating(noteDiff, Math.floor((PlayStateChangeables.safeFrames / 60) * 1000));
-									anas[coolNote.noteData].nearestNote = [coolNote.strumTime,coolNote.noteData,coolNote.sustainLength];
 									goodNoteHit(coolNote);
 								}
 							}
@@ -3212,12 +3200,6 @@ class PlayState extends MusicBeatState
 										noteMiss(shit, null);
 							}
 					}
-
-					if (!loadRep)
-						for (i in anas)
-							if (i != null)
-								replayAna.anaArray.push(i); // put em all there
-				}
 				notes.forEachAlive(function(daNote:Note)
 				{
 					if(PlayStateChangeables.useDownscroll && daNote.y > strumLine.y ||
